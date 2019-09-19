@@ -1,0 +1,12 @@
+2018-12-12 23:32:10 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "ITEM_ON_SALE" not found; SQL statement:
+select * from item_on_sale [42102-197]
+2018-12-12 23:32:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "ITEM_ON_SALE" not found; SQL statement:
+select * from item_on_sale [42102-197]
+2018-12-12 23:32:21 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "ITEM_ON_SALE" not found; SQL statement:
+select * from item_on_sale [42102-197]
+2018-12-12 23:54:02 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "PLAY_EVOLUTIONS" not found; SQL statement:
+select id, hash, apply_script, revert_script, state, last_problem from play_evolutions where state like 'applying_%' [42102-197]

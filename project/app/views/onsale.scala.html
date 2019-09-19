@@ -1,0 +1,85 @@
+@(items: List[models.products.ItemOnSale],categories:List[models.products.Category],user: models.users.User,env: play.api.Environment)
+
+@main("On Sale", user){
+	<h1>On sale here</h1>
+	@* Display succesful new product message from flash, if it is set *@
+	@if(flash.containsKey("success")) {
+		<div class = "alert alert-success">
+			@flash.get("success")
+		</div>
+
+	}
+
+
+	<div class="col-sm-3">
+		<h4>Categories</h4>
+		<div class="list-group">
+			<a href="@routes.HomeController.onsale(0)" class="list-group-item">All Categories</a>
+			@for(c<-categories){
+				<a href="@routes.HomeController.onsale(c.getId())" class="list-group-item catheight">@c.getName
+					<span class="badge">@c.getItems.size</span>
+				</a>
+			}
+		</div>
+	</div>
+	<div class="col-sm-9">
+	
+
+	<table class="table table-bordered table-hover table-condensed">
+		<thead>
+		<!-- The header-->
+		<tr>
+			<th>Image<th>
+			<th>Name</th>
+			<th>Description</th>
+			<th>Stock</th>
+			<th>Price</th>
+		</tr>
+		</thead>
+		<tbody>
+			@* Loop for creating table rows from ItemOnSale data *@
+			@for(i<-items) {
+			   <tr>
+					@if(env.resource("public/images/productImages" + i.getId+"thumb.jpeg").isDefined){
+						<td><img src = "/assets/images/productImages/@(i.getId + "thumb.jpeg")"/></td>
+					}else{
+					 <td><img src = "/assets/images/productImages/noImage.png"></td>
+					}
+				  <td>@i.getId</td>
+				  <td>@i.getName</td>
+				  
+				  <td>@i.getDescription</td>
+				  <td>@i.getStock</td>
+				  <td>&euro; @("%.2f".format(i.getPrice))</td>
+				 <!--delete button--> 
+				  <td>
+					  <a href="@routes.HomeController.deleteItem(i.getId)" class="button-xs btn-danger">
+						  <span class="glyphicon glyphicon-trash"></span>
+					  </a>
+				  </td>
+				   <!--update button--> 
+				   <td>
+					<a href="@routes.HomeController.updateItem(i.getId)" class="button-xs btn-danger" onclick="return confirmDel();">
+						<span class="glyphicon glyphicon-pencil"></span>
+					</a>
+				</td>
+			   
+			
+				@if((user != null) && ("customer".equals(user.getRole()))) {
+					@if(i.getStock()>0){
+					<td><a href="@routes.ShoppingCtrl.addToBasket(i.getId)" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-shopping-cart"></span></a></td>
+					}else{
+						<td><img src="/assets/images/oos.jpg"/></td>
+					}
+			  }}
+		
+		</tr>
+		 </tbody>
+	</table>
+	<p>
+		<a href="@routes.HomeController.addItem()">
+			<button class="btn btn-primary">Add an item</button>
+		</a>
+		</p>
+</div>
+ }

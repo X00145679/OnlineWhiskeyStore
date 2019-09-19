@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<title>Ceannt Uisce Beatha</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<style>
+body,h1,h5 {font-family: "Raleway", sans-serif}
+body, html {height: 100%}
+.bgimg {
+  background-image: url('whiskey.png');
+  min-height: 100%;
+  background-position: center;
+  background-size: cover;
+}
+a{
+text-decoration:none;
+list-style:none;
+}
+li{
+list-style-type:none;
+}
+</style>
+<body>
+<!--- this is the main body text decoration --->
+<div class="bgimg w3-display-container w3-text-white">
+  <div class="w3-display-topleft w3-container w3-xlarge">
+    <p><button onclick="document.getElementById('menu').style.display='block'" class="w3-button w3-black">links</button></p>
+    <p><button onclick="document.getElementById('contact').style.display='block'" class="w3-button w3-black">login</button></p>
+  </div>
+  <div class="w3-display-bottomleft w3-container">
+    <p class="w3-xlarge">Welcome to Ceannt Uisce Beatha</p>
+    <p class="w3-large">Please remember to log into your account to make a bid.</p>
+	<p><em>Copyright &copy of Ceannt Uisce Beatha</em></p>
+  </div>
+</div>
+<!--- This is a pop up with our links --->
+<div id="menu" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom">
+    <div class="w3-container w3-black w3-display-container">
+      <span onclick="document.getElementById('menu').style.display='none'" class="w3-button w3-display-topright w3-large">x</span>
+      <h1>Ceannt Uisce Beatha</h1>
+    </div>
+    <div id="links" class="w3-container">
+        <li @if(pagename=="Home") {class="active"}><a href="/">Home</a></li>
+		<li @if(pagename=="Onsale") {class="active"}><a href="/onsale">Onsale</a></li>
+		<li @if(pagename=="RegisterUser") {class="active"}><a href="/registerUser">Register</a></li>
+		<li @if(pagename=="Users") {class="active"}><a href="/users">Users</a></li>
+		<li @if(pagename=="Shopping Basket") {class="active"}><a href="/showBasket">Shopping Basket</a></li>
+    </div>
+  </div>
+</div>
+
+<!--- This is our button link to take us to the login page --->
+<button onclick='<li @if(pagename=="Login") {class="active"}><a href="/login">Login</a></li>'>Login</button>
+</body>
+
+</html>
+

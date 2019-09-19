@@ -1,0 +1,106 @@
+@(pagename: String, user:models.users.User)(content: Html)
+<!DOCTYPE html>
+<html>
+<div class="container-fluid">
+	<head>
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script type="text/javascript" src="jquery-3.3.1.js"></script>
+		
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+		<title>Ceannt Uisce Beatha</title>
+		<link href="main.css" rel="stylesheet"/>
+
+	</head>
+
+	<body>
+	
+		<div class="col-sm-8">
+			<header>
+		
+				<h1>Ceannt Uisce Beatha</h1>
+				<h2><em>Premium Irish Online Whiskey Auction</em></h2>
+				
+			</header>
+		</div>
+			<menu>
+		
+	
+			<div class="row">
+				<div class="col-sm-3">
+					<img src="whiskey image.jpeg" alt="Uisce Beatha Image">
+				</div>
+				
+				<div class="col-sm-6">
+					<nav class="navbar navbar-inverse">
+						<div class="container-fluid">
+							<div class="navbar-header">
+								<img src="project.jpg" alt="Our Logo">
+							</div>
+							<ul class="nav navbar-nav">
+								<li class="active"><a href="Whiskey Store.html">Home</a></li> 
+									<div class="dropdown">
+										<button class="dropdownbtn">Auctions</button>
+											<div class="dropdown-content">
+												<li><a href="auction.html">Active Auctions</a></li>
+												<li><a href="account.html">Your Auctions</a></li>
+												<li><a href="account.html">Auction History</a></li>
+											</div>
+									</div>
+									@if(user != null) {
+									<button onclick="document.getElementById('id01').style.display='block'">Login</button>
+									<div id="id01" class="modal">
+									<form class="modal-content animate" action="/action_page.php">
+									
+									
+
+
+									<span onclick="document.getElementById('id01').style.display='none'" 
+									class="close" title="Close Modal">&times;</span>
+									
+									<div class="container">
+									<li><label for="uname"><b>Username</b></label></li>
+									<input type="text" placeholder="Enter Username" name="uname" required>
+
+									<li><label for="psw"><b>Password</b></label></li>
+									<input type="password" placeholder="Enter Password" name="psw" required>
+									
+									<li><button type="submit">Login</button></li>
+									<label>
+									<input type="checkbox" checked="checked" name="remember"> Remember me
+									</label>
+									<li><span class="psw"><a href="#">Forgot password ?</a></span></li>
+									</div>
+									<div class="container" style="background-color:#f1f1f1">
+									<button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+									</div>
+									</form>
+									</div>
+								} else {
+									<a href="@routes.LoginController.logout()">Log out</a>
+								}
+
+									
+									
+									
+							</ul>
+						</div>
+					</nav>
+				
+					<main>
+						@content
+		
+					</main>
+				</div>
+				
+				<div class="col-sm-3">
+					<img src="whiskey image.jpeg" alt="Uisce Beatha Image">
+				</div>
+			</div>
+		<footer>
+		
+			<h6><em>Copyright &copy of Ceannt Uisce Beatha</em></h6>
+		</footer>
+	</body>
+</div>
+</html>
